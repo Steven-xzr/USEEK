@@ -4,11 +4,11 @@ import argparse
 
 
 arg_parser = argparse.ArgumentParser(description="Evaluation for detected keypoints.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-arg_parser.add_argument('-a', '--annotation-json', type=str, default='./keypointnet/annotations/knife.json',
+arg_parser.add_argument('-a', '--annotation-json', type=str, default='./data/keypointnet/annotations/knife.json',
                         help='Annotation JSON file path from KeypointNet dataset.')
-arg_parser.add_argument('-i', '--pcd-path', type=str, default='./keypointnet/pcds',
+arg_parser.add_argument('-i', '--pcd-path', type=str, default='./data/keypointnet/pcds',
                         help='Point cloud file folder path from KeypointNet dataset.')
-arg_parser.add_argument('-p', '--prediction', type=str, default='./prediction/knife_sprin.npz',
+arg_parser.add_argument('-p', '--prediction', type=str, default='./data/prediction/knife_sprin.npz',
                         help='Prediction file from predictor output.')
 arg_parser.add_argument('--miou-threshold', type=float, default=0.2)
 args = arg_parser.parse_args()

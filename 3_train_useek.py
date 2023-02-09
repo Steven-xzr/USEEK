@@ -14,17 +14,17 @@ from merger.sprin.model import SPRINSeg
 
 
 arg_parser = argparse.ArgumentParser()
-arg_parser.add_argument('--segment_dataset', type=str, default='./saved_segments/knife_expand.npz')
-arg_parser.add_argument('--checkpoint', type=str, default='./saved_models/knife_segment_k3_expand.pt',
+arg_parser.add_argument('--segment_dataset', type=str, default='./data/saved_segments/airplane_expand.npz')
+arg_parser.add_argument('--checkpoint', type=str, default='./data/saved_models/airplane_useek.pt',
                         help='Model checkpoint file path for saving.')
-arg_parser.add_argument('--device', type=str, default='cuda:1',
+arg_parser.add_argument('--device', type=str, default='cuda',
                         help='Pytorch device for training.')
 arg_parser.add_argument('--batch', type=int, default=8,
                         help='Batch size.')
 arg_parser.add_argument('--lr', type=float, default=1e-4)
 arg_parser.add_argument('--epochs', type=int, default=30,
                         help='Number of epochs to train.')
-arg_parser.add_argument('-k', '--n-keypoints', type=int, default=3,
+arg_parser.add_argument('-k', '--n-keypoints', type=int, default=5,
                         help='Requested number of keypoints to detect.')
 arg_parser.add_argument('--corr_factor', type=float, default=0)
 arg_parser.add_argument('--do_negative_sampling', action='store_true', default=True)

@@ -15,19 +15,19 @@ from pytorch3d.transforms import RotateAxisAngle, Rotate, random_rotations
 import copy
 
 arg_parser = argparse.ArgumentParser(description="Training Skeleton Merger. Valid .h5 files must contain a 'data' array of shape (N, n, 3) and a 'label' array of shape (N, 1).", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-arg_parser.add_argument('-t', '--train-data-dir', type=str, default='./point_cloud/train',
+arg_parser.add_argument('-t', '--train-data-dir', type=str, default='./data/point_cloud/train',
                         help='Directory that contains training .h5 files.')
-arg_parser.add_argument('-v', '--val-data-dir', type=str, default='./point_cloud/test',
+arg_parser.add_argument('-v', '--val-data-dir', type=str, default='./data/point_cloud/test',
                         help='Directory that contains validation .h5 files.')
-arg_parser.add_argument('-c', '--subclass', type=int, default=30,
+arg_parser.add_argument('-c', '--subclass', type=int, default=0,
                         help='Subclass label ID to train on.')  # 14 is `chair` class. 0 is airplane. 38 is mug. 45 is rifle. 13 is car. 18 is table. 27 is guitar. 30 is knife.
 # arg_parser.add_argument('-c', '--subclass', type=str, default='02691156',
 #                        help='Subclass label ID to train on.')
-arg_parser.add_argument('-m', '--checkpoint', '--saved-model-path', type=str, default='./saved_models/knife_merger_da.pt',
+arg_parser.add_argument('-m', '--checkpoint', '--saved-model-path', type=str, default='./data/saved_models/airplane_merger.pt',
                         help='Model checkpoint file path for saving.')
-arg_parser.add_argument('-k', '--n-keypoint', type=int, default=3,
+arg_parser.add_argument('-k', '--n-keypoint', type=int, default=5,
                         help='Requested number of keypoints to detect.')
-arg_parser.add_argument('-d', '--device', type=str, default='cuda:1',
+arg_parser.add_argument('-d', '--device', type=str, default='cuda:0',
                         help='Pytorch device for training.')
 arg_parser.add_argument('-b', '--batch', type=int, default=16,
                         help='Batch size.')
@@ -37,7 +37,7 @@ arg_parser.add_argument('--max-points', type=int, default=2048,
                         help='Indicates maximum points in each input point cloud.')
 
 arg_parser.add_argument('--encoder-type', type=str, default='PointNet2', choices=['PointNet2', 'DGCNN', 'EQCNN', 'EQPointNet', 'SPRIN'])
-arg_parser.add_argument('--data-augmentation', type=str, default='so3', choices=['aligned', 'z', 'so3'])
+arg_parser.add_argument('--data-augmentation', type=str, default='aligned', choices=['aligned', 'z', 'so3'])
 arg_parser.add_argument('--sparse', type=bool, default=False)
 arg_parser.add_argument('--correlation', type=bool, default=False)
 

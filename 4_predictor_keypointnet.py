@@ -13,19 +13,19 @@ from dgl.geometry import farthest_point_sampler
 from utils import naive_read_pcd
 
 arg_parser = argparse.ArgumentParser(description="Predictor for Skeleton Merger on KeypointNet dataset. Outputs a npz file with two arrays: kpcd - (N, k, 3) xyz coordinates of keypoints detected; nfact - (N, 2) normalization factor, or max and min coordinate values in a point cloud.", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-arg_parser.add_argument('-a', '--annotation-json', type=str, default='./keypointnet/annotations/knife.json',
+arg_parser.add_argument('-a', '--annotation-json', type=str, default='./data/keypointnet/annotations/airplane.json',
                         help='Annotation JSON file path from KeypointNet dataset.')
-arg_parser.add_argument('-i', '--pcd-path', type=str, default='./keypointnet/pcds',
+arg_parser.add_argument('-i', '--pcd-path', type=str, default='./data/keypointnet/pcds',
                         help='Point cloud file folder path from KeypointNet dataset.')
-arg_parser.add_argument('-m', '--checkpoint-path', '--model-path', type=str, default='saved_models/knife_weight.pt',
+arg_parser.add_argument('-m', '--checkpoint-path', '--model-path', type=str, default='./data/saved_models/airplane_useek.pt',
                         help='Model checkpoint file path to load.')
-arg_parser.add_argument('-d', '--device', type=str, default='cuda:1',
+arg_parser.add_argument('-d', '--device', type=str, default='cuda',
                         help='Pytorch device for predicting.')
-arg_parser.add_argument('-k', '--n-keypoint', type=int, default=4,
+arg_parser.add_argument('-k', '--n-keypoint', type=int, default=5,
                         help='Requested number of keypoints to detect.')
 arg_parser.add_argument('-b', '--batch', type=int, default=8,
                         help='Batch size.')
-arg_parser.add_argument('-p', '--prediction-output', type=str, default='./prediction/knife_weight.npz',
+arg_parser.add_argument('-p', '--prediction-output', type=str, default='./data/prediction/airplane_weight.npz',
                         help='Output file where prediction results are written.')
 arg_parser.add_argument('--max-points', type=int, default=2048,
                         help='Indicates maximum points in each input point cloud.')

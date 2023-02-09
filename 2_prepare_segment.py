@@ -12,19 +12,19 @@ from torch.utils.data import DataLoader, Dataset
 
 
 arg_parser = argparse.ArgumentParser()
-arg_parser.add_argument('-t', '--train-data-dir', type=str, default='./point_cloud/train',
+arg_parser.add_argument('-t', '--train-data-dir', type=str, default='./data/point_cloud/train',
                         help='Directory that contains training .h5 files.')
-arg_parser.add_argument('-v', '--val-data-dir', type=str, default='./point_cloud/test',
+arg_parser.add_argument('-v', '--val-data-dir', type=str, default='./data/point_cloud/test',
                         help='Directory that contains validation .h5 files.')
-arg_parser.add_argument('-c', '--subclass', type=int, default=30,
+arg_parser.add_argument('-c', '--subclass', type=int, default=0,
                         help='Subclass label ID to train on.')  # 14 is `chair` class. 0 is airplane. 38 is mug. 45 is rifle. 13 is car. 18 is table. 27 is guitar. 44 is remote. 8 is bus.
 # arg_parser.add_argument('-c', '--subclass', type=str, default='02691156',
 #                        help='Subclass label ID to train on.')
-arg_parser.add_argument('-m', '--merger-pretrain', '--saved-model-path', type=str, default='./saved_models/knife_merger_k4.pt',
+arg_parser.add_argument('-m', '--merger-pretrain', '--saved-model-path', type=str, default='./data/saved_models/airplane_merger.pt',
                         help='Model checkpoint file path for saving.')
-arg_parser.add_argument('-k', '--n-keypoint', type=int, default=4,
+arg_parser.add_argument('-k', '--n-keypoint', type=int, default=5,
                         help='Requested number of keypoints to detect.')
-arg_parser.add_argument('-d', '--device', type=str, default='cuda:1',
+arg_parser.add_argument('-d', '--device', type=str, default='cuda',
                         help='Pytorch device for training.')
 arg_parser.add_argument('-b', '--batch', type=int, default=16,
                         help='Batch size.')
@@ -34,7 +34,7 @@ arg_parser.add_argument('--max-points', type=int, default=2048,
 # args for generating segmentations
 arg_parser.add_argument('--dist_threshold', type=float, default=0.10, help='w.r.t. the normalized distance')
 arg_parser.add_argument('--expand', type=float, default=1.2, help='the coordinates of the keypoints are expanded so they are stretched to the edges')
-arg_parser.add_argument('--segment-output', type=str, default='./saved_segments/knife_expand.npz')
+arg_parser.add_argument('--segment-output', type=str, default='./data/saved_segments/airplane_expand.npz')
 args = arg_parser.parse_args()
 
 
